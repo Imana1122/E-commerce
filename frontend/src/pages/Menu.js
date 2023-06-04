@@ -12,7 +12,7 @@ const Menu = () => {
   console.log(productDisplay);
 
   const handleAddCartProduct = (e) => {
-    dispatch(addCartItem(productDisplay));
+    dispatch(addCartItem(productDisplay[0])); // Access the first element in the array
   };
 
   return (
@@ -20,7 +20,7 @@ const Menu = () => {
       <div className="w-full max-w-4xl m-auto md:flex bg-white">
         <div className="max-w-sm overflow-hidden w-full p-5 ">
           <img
-            src={productDisplay.image}
+            src={productDisplay[0]?.image} // Access the first element in the array
             className="hover:scale-105 transition-all h-full"
           />
         </div>

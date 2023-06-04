@@ -9,24 +9,22 @@ import { logoutRedux } from "../redux/userSlice";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const userData = useSelector((state) => state.user);
-  console.log(userData.email);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logoutRedux());
-    TransformStream("Logout successful");
+    alert("Logout successful");
   };
 
-  console.log(process.env.REACT_APP_ADMIN_EMAIL);
   const handleShowMenu = () => {
-    setShowMenu((preve) => !preve);
+    setShowMenu((prev) => !prev);
   };
 
   const cartItemNumber = useSelector((state) => state.product.cartItem);
 
   return (
     <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
-      {/* deskop */}
+      {/* desktop */}
       <div className="flex items-center h-full justify-between">
         <Link to={""}>
           <div className="h-10">
@@ -35,7 +33,7 @@ const Header = () => {
         </Link>
 
         <div className="flex items-center gap-4 md:gap-7">
-          <nav className=" gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
+          <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
             <Link to={""}>Home</Link>
             <Link to={"menu"}>Menu</Link>
             <Link to={"about"}>About</Link>
@@ -45,15 +43,19 @@ const Header = () => {
             <Link to={"cart"}>
               <BsCartFill />
 
-              <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center ">
+              <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center">
                 {cartItemNumber.length}
               </div>
             </Link>
           </div>
           <div className="text-slate-600" onClick={handleShowMenu}>
-            <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow ">
+            <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow">
               {userData.image ? (
-                <img src={userData.image} className="h-full w-full" />
+                <img
+                  src={userData.image}
+                  className="h-full w-full"
+                  alt="user"
+                />
               ) : (
                 <FaRegUserCircle />
               )}
@@ -84,10 +86,7 @@ const Header = () => {
                     Login
                   </Link>
                 )}
-                <nav
-                  className="
-                text-base flex flex-col md:hidden"
-                >
+                <nav className="text-base flex flex-col md:hidden">
                   <Link to={""} className="px-2 py-1">
                     Home
                   </Link>

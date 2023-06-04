@@ -1,9 +1,9 @@
-import HomeCard from "../components/HomeCard";
 import CardFeature from "../components/CardFeature";
 import { GrPrevious, GrNext } from "react-icons/gr";
 import AllProduct from "../components/AllProduct";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
+import HomeCard from "../components/HomeCard";
 
 const Home = () => {
   const productData = useSelector((state) => state.product.productList);

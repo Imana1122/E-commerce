@@ -6,6 +6,7 @@ import {
   increaseQty,
   decreaseQty,
 } from "../redux/productSlice";
+import { useDispatch } from "react-redux";
 
 const CartProduct = ({ id, name, image, price, category, qty, total }) => {
   const dispatch = useDispatch();

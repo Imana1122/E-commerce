@@ -7,29 +7,27 @@ const Newproduct = () => {
   const [data, setData] = useState({
     name: "",
     category: "",
-    image: "",
+    image: null,
     price: "",
     description: "",
   });
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setData(() => {
+    setData((prev) => {
       return {
-        ...ProgressEvent,
+        ...prev,
         [name]: value,
       };
     });
   };
 
   const uploadImage = async (e) => {
-    const data = await ImageToBase64(e.target.files[0]);
-    // console.log(data);
-
-    setData((preve) => {
+    const imageData = await ImageToBase64(e.target.files[0]);
+    setData((prev) => {
       return {
-        ...preve,
-        image: data,
+        ...prev,
+        image: imageData,
       };
     });
   };
@@ -45,7 +43,7 @@ const Newproduct = () => {
         {
           method: "POST",
           headers: {
-            "content-type": "application/json",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         }
@@ -57,7 +55,7 @@ const Newproduct = () => {
       setData({
         name: "",
         category: "",
-        image: "",
+        image: null,
         price: "",
         description: "",
       });
@@ -65,15 +63,16 @@ const Newproduct = () => {
       toast("Enter required fields");
     }
   };
+
   return (
     <div className="p-4">
       <form
         className="m-auto w-full max-w-md shadow flex flex-col p-3 bg-white"
-        onSubmit={data}
+        onSubmit={handleSubmit}
       >
         <label htmlFor="name">Name</label>
         <input
-          type={"text"}
+          type="text"
           name="name"
           className="bg-slate-200 p-1 my-1"
           id="name"
@@ -89,19 +88,19 @@ const Newproduct = () => {
           onChange={handleOnChange}
           value={data.category}
         >
-          <option value={"other"}>Category</option>
-          <option value={"fruits"}>Fruits</option>
-          <option value={"vegetable"}>Vegetable</option>
-          <option value={"ice cream"}>Icecream</option>
-          <option value={"dosa"}>Dosa</option>
-          <option value={"pizza"}>Pizza</option>
+          <option value="other">Category</option>
+          <option value="fruits">Fruits</option>
+          <option value="vegetable">Vegetable</option>
+          <option value="ice cream">Icecream</option>
+          <option value="dosa">Dosa</option>
+          <option value="pizza">Pizza</option>
         </select>
 
         <label htmlFor="image">
           Image
           <div className="h-40 w-full bg-slate-200 rounded flex items-center justify-center cursor-pointer">
             {data.image ? (
-              <img src={data.image} className="h-full" />
+              <img src={data.image} className="h-full" alt="Product" />
             ) : (
               <span className="text-5xl">
                 <BsCloudUpload />
@@ -109,13 +108,12 @@ const Newproduct = () => {
             )}
 
             <input
-              type={"file"}
+              type="file"
               id="image"
               name="image"
-              accept="image/"
+              accept="image/*"
               onChange={uploadImage}
               className="hidden"
-              value={data.image}
             />
           </div>
         </label>
@@ -124,7 +122,7 @@ const Newproduct = () => {
           Price
         </label>
         <input
-          type={"text"}
+          type="text"
           id="price"
           name="price"
           className="bg-slate-200 p-1 my-1"
@@ -143,8 +141,8 @@ const Newproduct = () => {
         ></textarea>
 
         <button
+          type="submit"
           className="bg-red-500 hover:bg-red-600 text-white text-lg font-medium my-2 drop-shadow"
-          onSubmit={handleSubmit}
         >
           Save
         </button>

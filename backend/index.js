@@ -14,7 +14,11 @@ console.log(process.env.MONGODB_URL);
 
 mongoose.set("strictQuery", false);
 mongoose
-  .connect(process.env.MONGODB_URL)
+  .connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+
   .then(() => console.log("Connected to database"))
   .catch((err) => console.log(err));
 
@@ -42,24 +46,29 @@ app.get("/", (req, res) => {
 app.post("/signup", async (req, res) => {
   console.log(req.body);
   const { email } = req.body;
-  userModel.findOne({ email: email }, (err, result) => {
+  try {
+    const result = await userModel.findOne({ email: email });
     console.log(result);
-    console.log(err);
     if (result) {
       res.send({ message: "Email id is already registered", alert: false });
     } else {
-      const data = userModel(req.body);
-      const save = data.save();
-      req.send({ message: "Successfully signed up", alert: true });
+      const data = new userModel(req.body);
+      await data.save();
+      res.send({ message: "Successfully signed up", alert: true });
     }
-  });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ message: "An error occurred", alert: false });
+  }
 });
 
 //api login
-app.post("/login", (req, res) => {
-  console.log(res.body);
+app.post("/login", async (req, res) => {
+  console.log(req.body);
+
   const { email } = req.body;
-  userModel.findOne({ email: email }, (err, result) => {
+  try {
+    const result = await userModel.findOne({ email: email });
     if (result) {
       console.log(result);
       const dataSend = {
@@ -76,7 +85,10 @@ app.post("/login", (req, res) => {
         alert: false,
       });
     }
-  });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
 });
 
 //product section

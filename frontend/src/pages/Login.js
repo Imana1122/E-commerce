@@ -30,6 +30,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(process.env.REACT_APP_SERVER_DOMAIN);
     const { email, password } = data;
     if (email && password) {
       const fetchData = await fetch(
@@ -37,7 +38,7 @@ const Login = () => {
         {
           method: "POST",
           headers: {
-            "content type": "application/json",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         }

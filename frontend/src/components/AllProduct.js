@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import FilterProduct from "./FilterProduct";
 import { useSelector } from "react-redux";
 import CardFeature from "./CardFeature";
+import FilterProduct from "./FilterProduct";
 
 const AllProduct = ({ heading }) => {
   const productData = useSelector((state) => state.product.productList);
   console.log(productData);
 
-  const categoryList = { ...new Set(...productData.map((e1) => e1.category)) };
+  const categoryList = [...new Set(productData.map((e1) => e1.category))];
   console.log(categoryList);
 
   //filter data display
@@ -32,9 +32,7 @@ const AllProduct = ({ heading }) => {
 
   return (
     <div className="my-5">
-      <h2 className="font-bold text-2xl text-slate-800 mb-4">
-        Your Product [heading]
-      </h2>
+      <h2 className="font-bold text-2xl text-slate-800 mb-4">{heading}</h2>
 
       <div className="flex gap-4 justify-center overflow-scroll scrollbar-hidden">
         {categoryList[0] ? (

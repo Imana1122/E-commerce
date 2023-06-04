@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import loginsignupimage from "../asset/loginAnimate.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageToBase64 } from "../utility/imagetoBase64";
-import { toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -48,8 +48,9 @@ const Signup = () => {
           {
             method: "POST",
             headers: {
-              "content type": "application/json",
+              "content-type": "application/json",
             },
+
             body: JSON.stringify(data),
           }
         );
@@ -62,10 +63,10 @@ const Signup = () => {
           navigate("/login");
         }
       } else {
-        alert("Password and confirm password are not same.");
+        toast("Password and confirm password are not same.");
       }
     } else {
-      alert("Please enter required fields!");
+      toast("Please enter required fields!");
     }
   };
   return (
