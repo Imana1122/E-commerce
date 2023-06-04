@@ -72,45 +72,45 @@ const Home = () => {
                 );
               })}
         </div>
-        <div className="flex w-full items-center">
-          <h2 className="font-bold text-2xl text-slate-800 mb-4">
-            Fresh Vegetables
-          </h2>
-          <div className="ml-auto flex gap-4">
-            <button
-              onClick={preveProduct}
-              className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
-            >
-              <GrPrevious />
-            </button>
-            <button
-              onClick={nextProduct}
-              className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
-            >
-              <GrNext />
-            </button>
-          </div>
+      </div>
+      <div className="flex w-full items-center">
+        <h2 className="font-bold text-2xl text-slate-800 mb-4">
+          Fresh Vegetables
+        </h2>
+        <div className="ml-auto flex gap-4">
+          <button
+            onClick={preveProduct}
+            className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
+          >
+            <GrPrevious />
+          </button>
+          <button
+            onClick={nextProduct}
+            className="bg-slate-300 hover:bg-slate-400 text-lg p-1 rounded"
+          >
+            <GrNext />
+          </button>
         </div>
-        <div
-          className="flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all"
-          ref={slideProductRef}
-        >
-          {homeProductCartListVegetables[0]
-            ? homeProductCartListVegetables.map((e1) => {
-                return (
-                  <CardFeature
-                    key={e1._id}
-                    name={e1.name}
-                    category={e1.category}
-                    price={e1.price}
-                    image={e1.image}
-                  />
-                );
-              })
-            : loadingArrayFeature.map((e1, index) => (
-                <CardFeature loading="Loading..." key={index + "All Product"} />
-              ))}
-        </div>
+      </div>
+      <div
+        className="flex gap-5 overflow-scroll scrollbar-none scroll-smooth transition-all"
+        ref={slideProductRef}
+      >
+        {homeProductCartListVegetables[0]
+          ? homeProductCartListVegetables.map((e1) => {
+              return (
+                <CardFeature
+                  key={e1._id}
+                  name={e1.name}
+                  category={e1.category}
+                  price={e1.price}
+                  image={e1.image}
+                />
+              );
+            })
+          : loadingArrayFeature.map((e1, index) => (
+              <CardFeature loading="Loading..." key={index + "All Product"} />
+            ))}
       </div>
 
       <AllProduct heading={"Your Product"} />
