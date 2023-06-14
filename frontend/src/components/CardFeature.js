@@ -26,7 +26,7 @@ const CardFeature = ({ image, name, price, category, loading, id }) => {
             onClick={() => window.crollTo({ top: "0", behaviour: "smooth" })}
           >
             <div className="h-14 flex flex-col justify-center items-center">
-              <img src={image} className="h-full" />
+              <img src={image} className="h-full" alt="product" />
             </div>
             <h3 className="font-semibold text-slate-600  capitalize text-lg mt-4 whitespace-nowrap overflow-hidden">
               {name}

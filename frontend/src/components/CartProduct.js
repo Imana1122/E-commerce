@@ -13,11 +13,7 @@ const CartProduct = ({ id, name, image, price, category, qty, total }) => {
   return (
     <div className="bg-slate-200 p-2 flex gap-4 rounded border border-slate-300">
       <div className="p-3 bg-white rounded overflow-hidden">
-        <img
-          src={image}
-          alt="prodcut image"
-          className="h-28 w-32 object-cover "
-        />
+        <img src={image} alt="product" className="h-28 w-32 object-cover " />
       </div>
       <div className="flex flex-col gap-1 w-full">
         <div className="flex justify-between">

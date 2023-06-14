@@ -34,7 +34,7 @@ const Home = () => {
         <div className="md:w-1/2">
           <div className="md:flex gap-3 bg-slate-400 w-36 px-2 items-center rounded-full">
             <p className="text-sm font-medium text-slate-900">Bike Delivery</p>
-            <img src="" className="h-7" />
+            <img src="" className="h-7" alt="logo" />
           </div>
           <h2 className="text-4xl md:text-7xl font-bold py-3">
             The Fastest Delivery in

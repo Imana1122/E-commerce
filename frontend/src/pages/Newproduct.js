@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BsCloudUpload } from "react-icons/bs";
 import { ImageToBase64 } from "../utility/imagetoBase64";
 import { toast } from "react-hot-toast";
-
+import "../index.css";
+import { REACT_APP_SERVER_DOMAIN } from "../service/service.js";
 const Newproduct = () => {
   const [data, setData] = useState({
     name: "",
@@ -39,7 +40,7 @@ const Newproduct = () => {
     const { name, image, category, price } = data;
     if (name && image && category && price) {
       const fetchData = await fetch(
-        `${process.env.REACT_APP_SERVER_DOMAIN}/uploadProduct`,
+        REACT_APP_SERVER_DOMAIN + "/uploadProduct",
         {
           method: "POST",
           headers: {

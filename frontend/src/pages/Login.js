@@ -5,6 +5,8 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRedux } from "../redux/userSlice";
 
+import { REACT_APP_SERVER_DOMAIN } from "../service/service.js";
+
 const Login = () => {
   const [data, setData] = useState({
     email: "",
@@ -30,19 +32,16 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(process.env.REACT_APP_SERVER_DOMAIN);
+    console.log(REACT_APP_SERVER_DOMAIN);
     const { email, password } = data;
     if (email && password) {
-      const fetchData = await fetch(
-        `${process.env.REACT_APP_SERVER_DOMAIN}/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const fetchData = await fetch(REACT_APP_SERVER_DOMAIN + "/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
       const dataRes = await fetchData.json();
       console.log(dataRes);
@@ -63,7 +62,7 @@ const Login = () => {
       <div className="w-full max-w-sm bg-white m-auto flex flex-col p-4">
         {/* <h1 className='text-center text-2xl font-bold'>Sign Up</h1> */}
         <div className="w-20 overflow-hidden rounded-full drop-shadow-md shadow-md m-auto relative">
-          <img src={loginsignupimage} className="w-full" />
+          <img src={loginsignupimage} className="w-full" alt="loginsignup" />
         </div>
 
         <form className="w-full py-3 flex flex-col" onSubmit={handleSubmit}>

@@ -3,6 +3,7 @@ import loginsignupimage from "../asset/loginAnimate.gif";
 import { Link, useNavigate } from "react-router-dom";
 import { ImageToBase64 } from "../utility/imagetoBase64";
 import toast from "react-hot-toast";
+import { REACT_APP_SERVER_DOMAIN } from "../service/service.js";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -36,24 +37,21 @@ const Signup = () => {
       };
     });
   };
-  console.log(process.env.REACT_APP_SERVER_DOMAIN);
+  console.log(REACT_APP_SERVER_DOMAIN);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { firstName, email, password, confirmPassword } = data;
     if (firstName && email && password && confirmPassword) {
       if (password === confirmPassword) {
-        const fetchData = await fetch(
-          `${process.env.REACT_APP_SERVER_DOMAIN}/signup`,
-          {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
+        const fetchData = await fetch(REACT_APP_SERVER_DOMAIN + "/signup", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
 
-            body: JSON.stringify(data),
-          }
-        );
+          body: JSON.stringify(data),
+        });
 
         const dataRes = await fetchData.json();
         console.log(dataRes);

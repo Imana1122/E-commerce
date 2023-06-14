@@ -22,6 +22,7 @@ const Menu = () => {
           <img
             src={productDisplay[0]?.image} // Access the first element in the array
             className="hover:scale-105 transition-all h-full"
+            alt="product"
           />
         </div>
         <div className="flex flex-col gap-1">

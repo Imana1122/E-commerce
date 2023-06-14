@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CardFeature from "./CardFeature";
 import FilterProduct from "./FilterProduct";
+import "../index.css";
 
 const AllProduct = ({ heading }) => {
   const productData = useSelector((state) => state.product.productList);

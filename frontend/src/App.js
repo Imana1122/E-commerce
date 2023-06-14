@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 import { setDataProduct } from "../../frontend/src/redux/productSlice";
 import { useDispatch, useSelector } from "react-redux";
